@@ -18,7 +18,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import Overview from '../pages/Overview';
+import RouterContainer from './RouterContainer';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -86,6 +87,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: prop => prop !== 'open' })
 }));
 
 export default function MainContainer() {
+  const navigate = useNavigate();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -115,7 +117,7 @@ export default function MainContainer() {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap component='div'>
-            立体库管理系统-上海大学
+            立体库管理系统 - 上海大学
           </Typography>
         </Toolbar>
       </AppBar>
@@ -127,7 +129,12 @@ export default function MainContainer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['概览', '仓库', '物料', '设置'].map((text, index) => (
+          {[
+            ['概览', '/'],
+            ['仓库', '/store'],
+            ['物料', '/materials'],
+            ['设置', '/settings'],
+          ].map((text, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -135,6 +142,7 @@ export default function MainContainer() {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                onClick={() => navigate(text[1])}
               >
                 <ListItemIcon
                   sx={{
@@ -145,7 +153,7 @@ export default function MainContainer() {
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={text[0]} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -178,7 +186,7 @@ export default function MainContainer() {
       </Drawer>
       <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Overview></Overview>
+        <RouterContainer />
       </Box>
     </Box>
   );
