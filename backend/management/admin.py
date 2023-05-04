@@ -4,7 +4,7 @@ from .models import Setting
 
 
 class SettingAdmin(admin.ModelAdmin):
-    list_display = ('key', 'value')
+    list_display = ('id','key', 'value')
 
     '''filter options'''
     list_filter = ('key', )

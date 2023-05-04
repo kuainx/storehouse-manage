@@ -14,7 +14,9 @@ def setting_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = SettingSerializer(data=request.data)
-        if serializer.is_valid():
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        setting = Setting.objects.get(key=request.data['key'])
+        setting.value=request.data['value']
+        setting.save()
+        settings = Setting.objects.all()
+        serializer = SettingSerializer(settings, many=True)
+        return Response(serializer.data)
