@@ -16,10 +16,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import RouterContainer from './RouterContainer';
 import { useNavigate } from 'react-router-dom';
+import DynamicIcon from './Utils/DynamicIcon';
 
 const drawerWidth = 240;
 
@@ -130,10 +129,10 @@ export default function MainContainer() {
         <Divider />
         <List>
           {[
-            ['概览', '/'],
-            ['仓库', '/store'],
-            ['物料', '/materials'],
-            ['设置', '/settings'],
+            ['概览', '/', 'ViewKanban'],
+            ['仓库', '/store', 'ViewModule'],
+            ['物料', '/materials', 'Layers'],
+            ['设置', '/settings', 'Settings'],
           ].map((text, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -151,42 +150,19 @@ export default function MainContainer() {
                     justifyContent: 'center',
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <DynamicIcon icon={text[2]}></DynamicIcon>
                 </ListItemIcon>
                 <ListItemText primary={text[0]} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
-      <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
+      <Box component='main' sx={{ flexGrow: 1, p: 3 }} className='mainRoot'>
         <DrawerHeader />
-        <RouterContainer />
+        <div>
+          <RouterContainer />
+        </div>
       </Box>
     </Box>
   );

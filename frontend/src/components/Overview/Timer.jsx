@@ -59,7 +59,7 @@ export default function Timer() {
         <div style={{ marginRight: '10%' }}>
           <span className='hourclass'>
             <span>{Hour}</span>
-            {Hour && <span style={{ margin: '0 2px' }}>{':'}</span>}
+            <span style={{ margin: '0 2px' }}>{':'}</span>
             <span>{Minutes}</span>
           </span>
           <span className='secondsclass'>{Seconds}</span>

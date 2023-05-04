@@ -1,3 +1,9 @@
+import StoreSheet from '../components/Store/StoreSheet';
+
 export default function StoreView() {
-  return <h1>仓库</h1>;
+  return (
+    <div className='storeSheetContainer'>
+      <StoreSheet n={0}></StoreSheet>
+    </div>
+  );
 }
