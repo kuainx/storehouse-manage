@@ -28,7 +28,7 @@ export default function StoreBox({ n, x, y }) {
     <Card sx={{ minWidth: 200 }}>
       <CardContent>
         <Typography variant='h5' color='text.secondary' gutterBottom>
-          {n}-{y + 1}-{x + 1}
+          {n + 1}-{y + 1}-{x + 1}
         </Typography>
         <Typography variant='h6' component='div' gutterBottom>
           <StatusSign status={status} />

@@ -3,6 +3,7 @@ import Overview from '../pages/Overview';
 import StoreView from '../pages/StoreView';
 import Materials from '../pages/Materials';
 import Settings from '../pages/Settings';
+import MaterialSetting from '../pages/MaterialSetting';
 
 export default function RouterContainer() {
   return (
@@ -10,6 +11,7 @@ export default function RouterContainer() {
       <Route path='/' element={<Overview />}></Route>
       <Route path='/store' element={<StoreView />}></Route>
       <Route path='/materials' element={<Materials />}></Route>
+      <Route path='/materials/setting' element={<MaterialSetting />}></Route>
       <Route path='/settings' element={<Settings />}></Route>
     </Routes>
   );

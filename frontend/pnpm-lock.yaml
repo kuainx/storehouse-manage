@@ -13,6 +13,12 @@ dependencies:
   '@mui/material':
     specifier: ^5.12.2
     version: registry.npmmirror.com/@mui/material@5.12.2(@emotion/react@11.10.6)(@emotion/styled@11.10.6)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
+  '@mui/x-data-grid':
+    specifier: ^6.3.1
+    version: registry.npmmirror.com/@mui/x-data-grid@6.3.1(@mui/material@5.12.2)(@mui/system@5.12.1)(react-dom@18.2.0)(react@18.2.0)
+  mobx:
+    specifier: ^6.9.0
+    version: registry.npmmirror.com/mobx@6.9.0
   prop-types:
     specifier: ^15.8.1
     version: registry.npmmirror.com/prop-types@15.8.1
@@ -593,7 +599,7 @@ packages:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.21.0
       '@emotion/is-prop-valid': registry.npmmirror.com/@emotion/is-prop-valid@1.2.0
       '@mui/types': registry.npmmirror.com/@mui/types@7.2.4(@types/react@18.0.28)
-      '@mui/utils': registry.npmmirror.com/@mui/utils@5.12.0(react@18.2.0)
+      '@mui/utils': registry.npmmirror.com/@mui/utils@5.12.3(react@18.2.0)
       '@popperjs/core': registry.npmmirror.com/@popperjs/core@2.11.7
       '@types/react': registry.npmmirror.com/@types/react@18.0.28
       clsx: registry.npmmirror.com/clsx@1.2.1
@@ -682,7 +688,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.21.0
-      '@mui/utils': registry.npmmirror.com/@mui/utils@5.12.0(react@18.2.0)
+      '@mui/utils': registry.npmmirror.com/@mui/utils@5.12.3(react@18.2.0)
       '@types/react': registry.npmmirror.com/@types/react@18.0.28
       prop-types: registry.npmmirror.com/prop-types@15.8.1
       react: registry.npmmirror.com/react@18.2.0
@@ -738,7 +744,7 @@ packages:
       '@mui/private-theming': registry.npmmirror.com/@mui/private-theming@5.12.0(@types/react@18.0.28)(react@18.2.0)
       '@mui/styled-engine': registry.npmmirror.com/@mui/styled-engine@5.12.0(@emotion/react@11.10.6)(@emotion/styled@11.10.6)(react@18.2.0)
       '@mui/types': registry.npmmirror.com/@mui/types@7.2.4(@types/react@18.0.28)
-      '@mui/utils': registry.npmmirror.com/@mui/utils@5.12.0(react@18.2.0)
+      '@mui/utils': registry.npmmirror.com/@mui/utils@5.12.3(react@18.2.0)
       '@types/react': registry.npmmirror.com/@types/react@18.0.28
       clsx: registry.npmmirror.com/clsx@1.2.1
       csstype: registry.npmmirror.com/csstype@3.1.2
@@ -775,6 +781,46 @@ packages:
       prop-types: registry.npmmirror.com/prop-types@15.8.1
       react: registry.npmmirror.com/react@18.2.0
       react-is: registry.npmmirror.com/react-is@18.2.0
+    dev: false
+
+  registry.npmmirror.com/@mui/utils@5.12.3(react@18.2.0):
+    resolution: {integrity: sha512-D/Z4Ub3MRl7HiUccid7sQYclTr24TqUAQFFlxHQF8FR177BrCTQ0JJZom7EqYjZCdXhwnSkOj2ph685MSKNtIA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@mui/utils/-/utils-5.12.3.tgz}
+    id: registry.npmmirror.com/@mui/utils/5.12.3
+    name: '@mui/utils'
+    version: 5.12.3
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.21.0
+      '@types/prop-types': registry.npmmirror.com/@types/prop-types@15.7.5
+      '@types/react-is': registry.npmmirror.com/@types/react-is@17.0.4
+      prop-types: registry.npmmirror.com/prop-types@15.8.1
+      react: registry.npmmirror.com/react@18.2.0
+      react-is: registry.npmmirror.com/react-is@18.2.0
+    dev: false
+
+  registry.npmmirror.com/@mui/x-data-grid@6.3.1(@mui/material@5.12.2)(@mui/system@5.12.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-iceINknaOd7AIyd1h8GZVVQKS0R/JgcC7Cr7jjbqBtv018FEppMCweWdbQZYrHmcmkx2tsM28dvOn40iUKHVCg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@mui/x-data-grid/-/x-data-grid-6.3.1.tgz}
+    id: registry.npmmirror.com/@mui/x-data-grid/6.3.1
+    name: '@mui/x-data-grid'
+    version: 6.3.1
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@mui/material': ^5.4.1
+      '@mui/system': ^5.4.1
+      react: ^17.0.2 || ^18.0.0
+      react-dom: ^17.0.2 || ^18.0.0
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.21.0
+      '@mui/material': registry.npmmirror.com/@mui/material@5.12.2(@emotion/react@11.10.6)(@emotion/styled@11.10.6)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/system': registry.npmmirror.com/@mui/system@5.12.1(@emotion/react@11.10.6)(@emotion/styled@11.10.6)(@types/react@18.0.28)(react@18.2.0)
+      '@mui/utils': registry.npmmirror.com/@mui/utils@5.12.3(react@18.2.0)
+      clsx: registry.npmmirror.com/clsx@1.2.1
+      prop-types: registry.npmmirror.com/prop-types@15.8.1
+      react: registry.npmmirror.com/react@18.2.0
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+      reselect: registry.npmmirror.com/reselect@4.1.8
     dev: false
 
   registry.npmmirror.com/@nodelib/fs.scandir@2.1.5:
@@ -2182,6 +2228,12 @@ packages:
       brace-expansion: registry.npmmirror.com/brace-expansion@1.1.11
     dev: true
 
+  registry.npmmirror.com/mobx@6.9.0:
+    resolution: {integrity: sha512-HdKewQEREEJgsWnErClfbFoVebze6rGazxFLU/XUyrII8dORfVszN1V0BMRnQSzcgsNNtkX8DHj3nC6cdWE9YQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mobx/-/mobx-6.9.0.tgz}
+    name: mobx
+    version: 6.9.0
+    dev: false
+
   registry.npmmirror.com/ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ms/-/ms-2.1.2.tgz}
     name: ms
@@ -2509,6 +2561,12 @@ packages:
       define-properties: registry.npmmirror.com/define-properties@1.2.0
       functions-have-names: registry.npmmirror.com/functions-have-names@1.2.3
     dev: true
+
+  registry.npmmirror.com/reselect@4.1.8:
+    resolution: {integrity: sha512-ab9EmR80F/zQTMNeneUr4cv+jSwPJgIlvEmVwLerwrWVbpLlBuls9XHzIeTFy4cegU2NHBp3va0LKOzU5qFEYQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/reselect/-/reselect-4.1.8.tgz}
+    name: reselect
+    version: 4.1.8
+    dev: false
 
   registry.npmmirror.com/resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/resolve-from/-/resolve-from-4.0.0.tgz}

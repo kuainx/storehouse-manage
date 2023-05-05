@@ -1,3 +1,5 @@
+import MaterialContainer from '../components/Material/MaterialContainer';
+
 export default function Materials() {
-  return <h1>物料</h1>;
+  return <MaterialContainer />;
 }

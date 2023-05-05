@@ -17,7 +17,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import RouterContainer from './RouterContainer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import DynamicIcon from './Utils/DynamicIcon';
 
 const drawerWidth = 240;
@@ -87,16 +87,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: prop => prop !== 'open' })
 
 export default function MainContainer() {
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -106,7 +99,7 @@ export default function MainContainer() {
           <IconButton
             color='inherit'
             aria-label='open drawer'
-            onClick={handleDrawerOpen}
+            onClick={() => setOpen(true)}
             edge='start'
             sx={{
               marginRight: 5,
@@ -122,7 +115,7 @@ export default function MainContainer() {
       </AppBar>
       <Drawer variant='permanent' open={open}>
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={() => setOpen(false)}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
@@ -132,6 +125,7 @@ export default function MainContainer() {
             ['概览', '/', 'ViewKanban'],
             ['仓库', '/store', 'ViewModule'],
             ['物料', '/materials', 'Layers'],
+            ['物料设置', '/materials/setting', 'Folder'],
             ['设置', '/settings', 'Settings'],
           ].map((text, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
@@ -142,6 +136,7 @@ export default function MainContainer() {
                   px: 2.5,
                 }}
                 onClick={() => navigate(text[1])}
+                selected={location.pathname == text[1]}
               >
                 <ListItemIcon
                   sx={{

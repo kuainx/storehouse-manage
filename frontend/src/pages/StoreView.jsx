@@ -1,9 +1,5 @@
-import StoreSheet from '../components/Store/StoreSheet';
+import StoreContainer from '../components/Store/StoreContainer';
 
 export default function StoreView() {
-  return (
-    <div className='storeSheetContainer'>
-      <StoreSheet n={0}></StoreSheet>
-    </div>
-  );
+  return <StoreContainer></StoreContainer>;
 }

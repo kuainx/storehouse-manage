@@ -61,3 +61,19 @@
   overflow: auto;
   height: calc(100vh - 200px);
 }
+.storeStatusContainer {
+  width: 100%;
+  overflow: auto;
+}
+.storeShelfContainer {
+  display: flex;
+  height: 60%;
+  /* width: 100%;
+  overflow: auto; */
+}
+.storeMachineContainer {
+  display: flex;
+  height: 40%;
+  /* width: 100%;
+  overflow: auto; */
+}
