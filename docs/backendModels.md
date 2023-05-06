@@ -34,7 +34,7 @@
   - locked
     - 库位已使用，但已被预约取出
   
-- good:ForeignKey(material.Material)
+- material:ForeignKey(material.Material)
 
 - num:PositiveInteger(default:1)
 
@@ -56,7 +56,7 @@
 
 - material:Char
 
-- unit:Text
+- unit:Char
 
 - info:JSON/NULL
 
@@ -80,7 +80,7 @@
 
 - executing:Boolean(false)
 
-- time:DateTime
+- time:DateTime(auto_now)
 
   
 

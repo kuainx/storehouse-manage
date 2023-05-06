@@ -9,5 +9,4 @@ class Setting(models.Model):
 
     class Meta:
         verbose_name = "Setting"
-        verbose_name_plural = "Settings"
         indexes = [models.Index(fields=["key"])]

@@ -4,7 +4,7 @@ from .models import Store
 
 
 class StoreAdmin(admin.ModelAdmin):
-    list_display = ('id','storen', 'storey','storex','status','good')
+    list_display = ('id','storen', 'storey','storex','status','material','num')
 
 
 admin.site.register(Store,StoreAdmin)
