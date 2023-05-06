@@ -15,9 +15,9 @@ def store_list(request):
 
     elif request.method == 'POST':
         store = Store.objects.get(id=request.data['id'])
-        store.status=request.data['status']
-        store.good=request.data['good']
-        store.details=request.data['details']
+        store.status = request.data['status']
+        store.good = request.data['good']
+        store.details = request.data['details']
         store.save()
         serializer = StoreSerializer(store)
         return Response(serializer.data)
