@@ -77,3 +77,9 @@
   /* width: 100%;
   overflow: auto; */
 }
+
+.simulatorControlContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}

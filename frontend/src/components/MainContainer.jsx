@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import RouterContainer from './RouterContainer';
 import { useNavigate, useLocation } from 'react-router-dom';
 import DynamicIcon from './Utils/DynamicIcon';
+import PollingSwitch from './Main/PollingSwitch';
 
 const drawerWidth = 240;
 
@@ -111,6 +112,7 @@ export default function MainContainer() {
           <Typography variant='h6' noWrap component='div'>
             立体库管理系统 - 上海大学
           </Typography>
+          <PollingSwitch />
         </Toolbar>
       </AppBar>
       <Drawer variant='permanent' open={open}>
@@ -127,6 +129,7 @@ export default function MainContainer() {
             ['物料', '/materials', 'Layers'],
             ['物料设置', '/materials/setting', 'Folder'],
             ['设置', '/settings', 'Settings'],
+            ['模拟器', '/simulator', 'FlashAuto'],
           ].map((text, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton

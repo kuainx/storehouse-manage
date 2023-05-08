@@ -10,11 +10,11 @@ import PropTypes from 'prop-types';
 function StatusSign({ status }) {
   switch (status) {
     case 0:
-      return <Chip label='Empty/空' color='primary' variant='outlined' />;
+      return <Chip label='Empty/空' color='success' variant='outlined' />;
     case 1:
       return <Chip label='Reserved/已预订' color='warning' variant='outlined' />;
     case 2:
-      return <Chip label='Occupied/已占用' color='success' variant='outlined' />;
+      return <Chip label='Occupied/已占用' color='primary' variant='outlined' />;
     case 3:
       return <Chip label='Locked/已锁定' color='error' variant='outlined' />;
   }

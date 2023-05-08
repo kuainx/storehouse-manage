@@ -4,6 +4,7 @@ import StoreView from '../pages/StoreView';
 import Materials from '../pages/Materials';
 import Settings from '../pages/Settings';
 import MaterialSetting from '../pages/MaterialSetting';
+import Simulator from '../pages/Simulator';
 
 export default function RouterContainer() {
   return (
@@ -13,6 +14,7 @@ export default function RouterContainer() {
       <Route path='/materials' element={<Materials />}></Route>
       <Route path='/materials/setting' element={<MaterialSetting />}></Route>
       <Route path='/settings' element={<Settings />}></Route>
+      <Route path='/simulator' element={<Simulator />}></Route>
     </Routes>
   );
 }

@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import InfoCard1 from './InfoCard1';
 import Timer from './Timer';
@@ -9,13 +7,7 @@ import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import DoneIcon from '@mui/icons-material/Done';
 import WifiIcon from '@mui/icons-material/Wifi';
 import { IconButton } from '@mui/material';
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+import Item from '../Utils/Item';
 
 export default function OverviewContainer() {
   return (
