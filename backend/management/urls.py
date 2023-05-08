@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     re_path(r'^settings/$', views.setting_list),
-    # re_path(r'^articles/(?P<pk>[0-9]+)$', views.article_detail),
+    re_path(r'^init/settings$', views.init_settings),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

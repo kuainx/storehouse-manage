@@ -1,0 +1,4 @@
+id,key,value,desc
+0,storen,2,码垛机数量
+1,storex,10,每层货位数
+2,storey,5,货架层数

@@ -16,8 +16,21 @@ def store_list(request):
     elif request.method == 'POST':
         store = Store.objects.get(id=request.data['id'])
         store.status = request.data['status']
+        store.material = request.data['material']
+        store.details = request.data['details']
+        store.save()
+
+
+@api_view(['GET', 'POST'])
+def store_query(request):
+    if request.method == 'GET':
+        stores = Store.objects.all()
+        serializer = StoreSerializer(stores, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        store = Store.objects.get(id=request.data['id'])
+        store.status = request.data['status']
         store.good = request.data['good']
         store.details = request.data['details']
         store.save()
-        serializer = StoreSerializer(store)
-        return Response(serializer.data)
