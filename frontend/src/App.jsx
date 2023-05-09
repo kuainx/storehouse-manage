@@ -4,11 +4,10 @@ import Controller from './controller/Controller';
 import './App.css';
 
 function App() {
-  axios.defaults.baseURL = '/api';
+  axios.defaults.baseURL = '/apidev/';
   return (
     <>
       <Main></Main>
-      <Controller></Controller>
     </>
   );
 }

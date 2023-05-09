@@ -20,6 +20,8 @@ import RouterContainer from './RouterContainer';
 import { useNavigate, useLocation } from 'react-router-dom';
 import DynamicIcon from './Utils/DynamicIcon';
 import PollingSwitch from './Main/PollingSwitch';
+import { routerConfig } from '../controller/routerConfig';
+import TitleBreadcrumb from './Main/TitleBreadcrumb';
 
 const drawerWidth = 240;
 
@@ -109,9 +111,7 @@ export default function MainContainer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' noWrap component='div'>
-            立体库管理系统 - 上海大学
-          </Typography>
+          <TitleBreadcrumb />
           <PollingSwitch />
         </Toolbar>
       </AppBar>
@@ -123,14 +123,7 @@ export default function MainContainer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {[
-            ['概览', '/', 'ViewKanban'],
-            ['仓库', '/store', 'ViewModule'],
-            ['物料', '/materials', 'Layers'],
-            ['物料设置', '/materials/setting', 'Folder'],
-            ['设置', '/settings', 'Settings'],
-            ['模拟器', '/simulator', 'FlashAuto'],
-          ].map((text, index) => (
+          {routerConfig.map((e, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -138,8 +131,8 @@ export default function MainContainer() {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                onClick={() => navigate(text[1])}
-                selected={location.pathname == text[1]}
+                onClick={() => navigate(e[1])}
+                selected={location.pathname == e[1]}
               >
                 <ListItemIcon
                   sx={{
@@ -148,9 +141,9 @@ export default function MainContainer() {
                     justifyContent: 'center',
                   }}
                 >
-                  <DynamicIcon icon={text[2]}></DynamicIcon>
+                  <DynamicIcon icon={e[2]}></DynamicIcon>
                 </ListItemIcon>
-                <ListItemText primary={text[0]} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={e[0]} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}

@@ -3,8 +3,11 @@ import Grid from '@mui/material/Grid';
 import StoreShelf from './StoreShelf';
 import StoreMachine from './StoreMachine';
 import { useState } from 'react';
+import { mobxObserver, useStores } from '../../store';
 
-export default function StoreContainer() {
+function StoreContainer() {
+  const { materialStore } = useStores();
+  console.log(materialStore.storeData);
   const [n, setN] = useState(0);
   return (
     <Grid container spacing={2}>
@@ -28,3 +31,4 @@ export default function StoreContainer() {
     </Grid>
   );
 }
+export default mobxObserver(StoreContainer);
