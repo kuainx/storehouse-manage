@@ -3,9 +3,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from . import views
 
 urlpatterns = [
-    re_path(r'^settings/$', views.setting_list),
-    re_path(r'^init/settings$', views.init_settings),
-    re_path(r'^init/stores$', views.init_stores),
+    re_path(r'^get/$', views.log_list),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

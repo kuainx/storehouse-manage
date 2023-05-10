@@ -24,6 +24,7 @@ urlpatterns = [
         path('material/', include('material.urls')),
         path('store/', include('store.urls')),
         path('task/', include('task.urls')),
+        path('log/', include('log.urls')),
         path("admin/", admin.site.urls),
     ])),
 ]

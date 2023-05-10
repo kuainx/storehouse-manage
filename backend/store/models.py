@@ -16,7 +16,7 @@ class Store(models.Model):
         choices=StoreStatus.choices,
         default=StoreStatus.EMPTY,
     )
-    material = models.ForeignKey('material.Material',models.PROTECT,verbose_name='Material')
+    material = models.ForeignKey('material.Material',models.PROTECT,verbose_name='Material',blank = True,null=True)
     num = models.PositiveSmallIntegerField(verbose_name='num',default=1)
     details = models.JSONField(verbose_name='GoodDetail',default=dict,blank=True)
 
@@ -25,4 +25,5 @@ class Store(models.Model):
 
     class Meta:
         verbose_name = "Store"
-        indexes = [models.Index(fields=["storen", "storey", "storex"])]
+        indexes = [models.Index(fields=["storen", "storey", "storex"]),
+                   models.Index(fields=["status"])]

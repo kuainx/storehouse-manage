@@ -23,6 +23,7 @@
 - 接口描述：初始化仓库
 - 接口地址：/management/init/stores
 - 请求方式：POST
+- 风险提示：可能造成物料移位、丢失
 - 注：无请求及返回内容，POST仅防止误操作
 
 
@@ -36,19 +37,13 @@
 
 
 
-### Store/
-
-- 接口描述：新增库位
-- 接口地址：/store
-- 请求方式：POST
-
-
 ### Store/<id>
 
 - 接口描述：获取/修改/删除指定库位
 - 接口地址：/store/<id>
 - 请求方式：GET, PUT, PATCH, DELETE
 - 返回数据：JSON
+
 
 
 ### Material/all
