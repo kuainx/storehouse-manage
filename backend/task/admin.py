@@ -1,10 +1,8 @@
 from django.contrib import admin
 from .models import Task
-# Register your models here.
 
 
+@admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('id','stacker','origin', 'target','time')
-
-
-admin.site.register(Task,TaskAdmin)
+    list_display = ('id', 'stacker', 'type', 'targetn',
+                    'targetx', 'targety', 'time')

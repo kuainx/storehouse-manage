@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class LogStatus(models.IntegerChoices):
+class LogType(models.IntegerChoices):
     LOG = 0, "log"
     INFO = 1, "info"
     WARN = 2, "warn"
@@ -14,9 +14,8 @@ class Log(models.Model):
     reporter = models.CharField(verbose_name='target', max_length=32)
     type = models.PositiveSmallIntegerField(
         verbose_name='type',
-        max_length=4,
-        choices=LogStatus.choices,
-        default=LogStatus.LOG,
+        choices=LogType.choices,
+        default=LogType.LOG,
     )
     # def __str__(self):
     #     return self.key+':'+self.value

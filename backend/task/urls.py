@@ -5,7 +5,6 @@ from . import views
 urlpatterns = [
     re_path(r'^all$', views.task_list),
     re_path(r'^set$', views.task_set),
-    re_path(r'^new$', views.task_new),
     re_path(r'^remove$', views.task_remove),
 ]
 

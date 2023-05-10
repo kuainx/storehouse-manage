@@ -24,16 +24,9 @@ def task_set(request):
 
 
 @api_view(['POST'])
-def task_new(request):
-    serializer = TaskSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['POST'])
 def task_remove(request):
     task = Task.objects.get(id=request.data['id'])
     task.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
