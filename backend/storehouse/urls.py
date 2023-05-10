@@ -19,10 +19,11 @@ from django.urls import path, include
 # from django.conf.urls import include, url
 
 urlpatterns = [
-    # url(r'^', include('management.urls')),
-    path('management/', include('management.urls')),
-    path('material/', include('material.urls')),
-    path('store/', include('store.urls')),
-    path('task/', include('task.urls')),
-    path("admin/", admin.site.urls),
+    path(r'api/', include([
+        path('management/', include('management.urls')),
+        path('material/', include('material.urls')),
+        path('store/', include('store.urls')),
+        path('task/', include('task.urls')),
+        path("admin/", admin.site.urls),
+    ])),
 ]
