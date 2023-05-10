@@ -57,7 +57,7 @@ def init_stores(request):
     Store.objects.filter(id__gte=n*y*x).delete()
     dataset = []
     id = 0
-    for nn in range(0, n):
+    for nn in range(0, n*2):
         for yy in range(0, y):
             dataset.extend([[xx+id, nn, yy, xx]for xx in range(0, x)])
             id += x
