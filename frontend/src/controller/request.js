@@ -6,7 +6,6 @@ export async function fetchMaterial() {
 }
 
 export async function fetchStore() {
-  const response = await axios.get('storeapi');
-  // 未知的问题
+  const response = await axios.get('store');
   return response.data;
 }

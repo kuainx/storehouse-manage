@@ -83,3 +83,8 @@
   gap: 20px;
   justify-content: center;
 }
+
+.settingFrame {
+  width: calc(100vw - 560px);
+  height: calc(100vh - 180px);
+}
