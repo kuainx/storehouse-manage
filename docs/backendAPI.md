@@ -80,11 +80,21 @@
 
 
 
-### Task/new
+### Task/import
 
-- 接口描述：新增任务
-- 接口地址：/task/new
+- 接口描述：新增入库任务
+- 接口地址：/task/import
 - 请求方式：POST
+- 请求数据：demo
+```
+{
+    "priority":true,
+    "material":{
+        "material":3,
+        "num":1
+    }
+}
+```
 
 
 

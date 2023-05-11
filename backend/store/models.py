@@ -20,10 +20,10 @@ class Store(models.Model):
     num = models.PositiveSmallIntegerField(verbose_name='num',default=1)
     details = models.JSONField(verbose_name='GoodDetail',default=dict,blank=True)
 
-    # def __str__(self):
-    #     return self.key+':'+self.value
+    def __str__(self):
+        return str(self.storen)+'-'+str(self.storex)+'-'+str(self.storey)+'/'+StoreStatus(self.status).label
 
     class Meta:
         verbose_name = "Store"
         indexes = [models.Index(fields=["storen", "storey", "storex"]),
-                   models.Index(fields=["status"])]
+                   models.Index(fields=["status", "storen"])]
