@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import StoreRow from './StoreRow';
 
-export default function StoreSheet({ n }) {
+export default function StoreSheet(props) {
   return (
     <div className='storeSheet'>
-      {[...Array(10).keys()].map(index => (
+      {[...Array(props.sy).keys()].map(index => (
         <div key={index} className='storeRow'>
-          <StoreRow n={n} y={index} />
+          <StoreRow y={index} {...props} />
         </div>
       ))}
     </div>
@@ -14,4 +14,5 @@ export default function StoreSheet({ n }) {
 }
 StoreSheet.propTypes = {
   n: PropTypes.number.isRequired,
+  sy: PropTypes.number.isRequired,
 };

@@ -1,10 +1,9 @@
 import StoreBox from './StoreBox';
 import PropTypes from 'prop-types';
 
-export default function StoreRow({ n, y }) {
-  return [...Array(20).keys()].map(index => <StoreBox key={index} n={n} y={y} x={index} />);
+export default function StoreRow(props) {
+  return [...Array(props.sx).keys()].map(index => <StoreBox key={index} x={index} {...props} />);
 }
 StoreRow.propTypes = {
-  n: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
+  sx: PropTypes.number.isRequired,
 };

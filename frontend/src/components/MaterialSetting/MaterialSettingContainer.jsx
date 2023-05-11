@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar, zhCN } from '@mui/x-data-grid';
 import { mobxObserver, useStores } from '../../store';
+import { Button } from '@mui/material';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 100 },
@@ -24,6 +25,18 @@ const columns = [
     field: 'unit',
     headerName: '单位',
     width: 150,
+  },
+  {
+    field: 'in',
+    headerName: '入库',
+    width: 100,
+    renderCell: p => (
+      <strong>
+        <Button variant='contained' size='small'>
+          入库
+        </Button>
+      </strong>
+    ),
   },
 ];
 

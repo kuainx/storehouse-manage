@@ -6,6 +6,11 @@ export async function fetchMaterial() {
 }
 
 export async function fetchStore() {
-  const response = await axios.get('store');
+  const response = await axios.get('store/');
+  return response.data;
+}
+
+export async function fetchSettings() {
+  const response = await axios.get('management/settings/');
   return response.data;
 }
