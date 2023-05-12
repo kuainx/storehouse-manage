@@ -27,7 +27,7 @@ const columns = [
     field: 'out',
     headerName: '出库',
     width: 100,
-    renderCell: p => (
+    renderCell: () => (
       <strong>
         <Button variant='contained' size='small'>
           出库

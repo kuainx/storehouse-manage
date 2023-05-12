@@ -5,6 +5,11 @@ export async function fetchMaterial() {
   return response.data;
 }
 
+export async function fetchTask() {
+  const response = await axios.get('task/all');
+  return response.data;
+}
+
 export async function fetchStore() {
   const response = await axios.get('store/');
   return response.data;
