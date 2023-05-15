@@ -21,7 +21,7 @@ class Store(models.Model):
     details = models.JSONField(verbose_name='GoodDetail',default=dict,blank=True)
 
     def __str__(self):
-        return str(self.storen)+'-'+str(self.storex)+'-'+str(self.storey)+'/'+StoreStatus(self.status).label
+        return str(self.storen)+'-'+str(self.storey)+'-'+str(self.storex)+'/'+StoreStatus(self.status).label
 
     class Meta:
         verbose_name = "Store"

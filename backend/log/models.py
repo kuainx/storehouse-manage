@@ -11,7 +11,7 @@ class LogType(models.IntegerChoices):
 class Log(models.Model):
     time = models.DateTimeField(verbose_name='time', auto_now_add=True)
     msg = models.TextField()
-    reporter = models.CharField(verbose_name='target', max_length=32)
+    reporter = models.CharField(verbose_name='reporter', max_length=32)
     type = models.PositiveSmallIntegerField(
         verbose_name='type',
         choices=LogType.choices,

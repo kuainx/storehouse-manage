@@ -9,6 +9,7 @@ urlpatterns = [
     re_path(r'^remove$', views.task_remove),
     re_path(r'^import$', storeViews.task_import),
     re_path(r'^export$', storeViews.task_export),
+    re_path(r'^get$', storeViews.task_get),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

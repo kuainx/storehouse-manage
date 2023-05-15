@@ -104,7 +104,13 @@
 - 接口地址：/task/get
 - 请求方式：POST
 - 返回数据：JSON
-
+- 请求数据：demo
+```
+{
+    "material":1,
+    "priority":false
+}
+```
 
 
 ### Task/set
