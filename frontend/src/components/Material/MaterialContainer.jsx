@@ -1,68 +1,67 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, zhCN } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar, zhCN } from '@mui/x-data-grid';
+import { mobxObserver, useStores } from '../../store';
+import { Button } from '@mui/material';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 50 },
+  { field: 'id', headerName: 'ID', width: 100 },
   {
-    field: 'firstName',
+    field: 'display',
     headerName: '物料名称',
     width: 150,
-    editable: true,
   },
   {
-    field: 'Last name',
+    field: 'total',
     headerName: '总数',
     width: 150,
-    editable: true,
   },
   {
-    field: 'age',
-    headerName: '位置',
-    type: 'number',
-    width: 110,
-    editable: true,
+    field: 'location',
+    headerName: '存储',
+    width: 300,
+    valueFormatter: locations =>
+      locations.value.map(e => `<${e.storen + 1}-${e.storey + 1}-${e.storex + 1}>`).join(','),
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: params => `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    field: 'out',
+    headerName: '出库',
+    width: 100,
+    renderCell: () => (
+      <strong>
+        <Button variant='contained' size='small'>
+          出库
+        </Button>
+      </strong>
+    ),
   },
 ];
 
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
-
-export default function MaterialContainer() {
+function MaterialContainer() {
+  const { materialStore } = useStores();
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
+    <Box sx={{ height: '80vh', width: 'auto' }}>
       <DataGrid
         localeText={zhCN.components.MuiDataGrid.defaultProps.localeText}
-        rows={rows}
+        rows={materialStore.getMaterialData}
         columns={columns}
+        slots={{ toolbar: GridToolbar }}
         initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
+          sorting: {
+            sortModel: [{ field: 'id', sort: 'asc' }],
           },
         }}
-        pageSizeOptions={[5]}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
+        autoPageSize
         checkboxSelection
         disableRowSelectionOnClick
       />
     </Box>
   );
 }
+export default mobxObserver(MaterialContainer);

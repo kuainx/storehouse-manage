@@ -1,13 +1,15 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import InfoCard1 from './InfoCard1';
 import Timer from './Timer';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import DoneIcon from '@mui/icons-material/Done';
 import WifiIcon from '@mui/icons-material/Wifi';
 import { IconButton } from '@mui/material';
 import Item from '../Utils/Item';
+import TaskInfoCard from './TaskInfoCard';
+import MaterialInfoCard from './MaterialInfoCard';
+import StoreInfoCard from './StoreInfoCard';
 
 export default function OverviewContainer() {
   return (
@@ -43,13 +45,13 @@ export default function OverviewContainer() {
           </Item>
         </Grid>
         <Grid item xs={4}>
-          <InfoCard1></InfoCard1>
+          <TaskInfoCard></TaskInfoCard>
         </Grid>
         <Grid item xs={4}>
-          <InfoCard1></InfoCard1>
+          <StoreInfoCard></StoreInfoCard>
         </Grid>
         <Grid item xs={4}>
-          <InfoCard1></InfoCard1>
+          <MaterialInfoCard></MaterialInfoCard>
         </Grid>
         <Grid item xs={12}>
           <Timer></Timer>

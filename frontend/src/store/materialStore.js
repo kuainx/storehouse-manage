@@ -12,7 +12,11 @@ export function materialStore() {
     async getMaterialStore(forceUpdate = false) {
       if (forceUpdate || this.lastFetchMaterial + 10 * 1000 < Date.now()) {
         const data = await fetchMaterial();
-        data.forEach(e => (e.display = `${e.name}(${e.unit})`));
+        data.forEach(e => {
+          e.display = `${e.name}(${e.unit})`;
+          e.total = 0;
+          e.location = [];
+        });
         runInAction(() => {
           this.localMaterialList = data;
           this.lastFetchMaterial = Date.now();
@@ -36,8 +40,42 @@ export function materialStore() {
       }
       return this.localStoreRaw;
     },
+    shelfData: [],
+    materialData: [],
+    get getMaterialData() {
+      this.storeData;
+      return this.materialData;
+    },
     get storeData() {
-      return this.storeRaw.map(e => ({ ...e, materialDisplay: this.materialStore[e.material]?.display }));
+      const ret = [];
+      const shelfData = [];
+      const materialData = [];
+      this.storeRaw.forEach(e => {
+        ret[e.storen] ??= [];
+        ret[e.storen][e.storey] ??= [];
+        ret[e.storen][e.storey][e.storex] = { ...e, materialDisplay: this.materialStore[e.material]?.display };
+        shelfData[e.storen] ??= { EMTY: 0, OCUP: 0, RSVD: 0, LOCK: 0 };
+        shelfData[e.storen][e.status]++;
+        if (e.status === 'OCUP') {
+          const materialIndex = materialData.findIndex(material => material.id === e.material);
+          if (materialIndex === -1) {
+            materialData.push({
+              id: e.material,
+              display: this.materialStore[e.material]?.display,
+              total: e.num,
+              location: [e],
+            });
+          } else {
+            materialData[materialIndex].total += e.num;
+            materialData[materialIndex].location.push(e);
+          }
+        }
+      });
+      runInAction(() => {
+        this.shelfData = shelfData;
+        this.materialData = materialData;
+      });
+      return ret;
     },
   });
 }

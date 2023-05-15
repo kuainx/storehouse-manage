@@ -86,5 +86,18 @@
 
 .settingFrame {
   width: calc(100vw - 560px);
-  height: calc(100vh - 180px);
+  height: calc(100vh - 200px);
+}
+
+.settingBtnContainer {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.simulatorContainer {
+  display: flex;
+  flex-direction: column !important;
+  gap: 20px;
 }
