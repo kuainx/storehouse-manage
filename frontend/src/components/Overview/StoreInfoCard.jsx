@@ -19,7 +19,7 @@ function StoreInfoCard() {
   const sn = parseInt(settings.storen);
   const sy = parseInt(settings.storey);
   const sx = parseInt(settings.storex);
-  const total = sn * sy * sx;
+  const total = 2 * sn * sy * sx;
   const count = storeRaw.reduce(
     (last, current) => {
       last[current.status]++;
@@ -34,7 +34,7 @@ function StoreInfoCard() {
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography sx={{ mb: 1.5 }} variant='h5' component='div'>
-          库容：{sn}*{sy}*{sx}={total}
+          库容：2*{sn}*{sy}*{sx}={total}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color='text.secondary'>
           占用：{renderNum(count.OCUP)}，空置：{renderNum(count.EMTY)}

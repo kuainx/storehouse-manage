@@ -12,7 +12,7 @@ function TaskInfoCard() {
   const { runningStore } = useStores();
   const navigate = useNavigate();
   const data = runningStore.taskRaw;
-  if (data.length === 0) {
+  if (runningStore.lastFetchTask === 0) {
     return <CircularProgress disableShrink />;
   }
   const count = data.reduce(
