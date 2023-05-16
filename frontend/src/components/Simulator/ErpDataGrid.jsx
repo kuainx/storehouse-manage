@@ -1,26 +1,34 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar, zhCN } from '@mui/x-data-grid';
-import { mobxObserver, useStores } from '../../store';
 import { Checkbox, Chip } from '@mui/material';
 import UploadIcon from '@mui/icons-material/Upload';
 import DownloadIcon from '@mui/icons-material/Download';
 import SearchIcon from '@mui/icons-material/Search';
+import SendIcon from '@mui/icons-material/Send';
+import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 100 },
+  { field: 'id', headerName: '#', width: 50 },
   {
-    field: 'stacker',
-    headerName: '码垛机',
-    width: 100,
-    valueGetter: e => e.value + 1,
+    field: 'send',
+    headerName: '来源',
+    width: 110,
+    renderCell: e => {
+      if (e.value) {
+        return <Chip variant='outlined' color='warning' icon={<SendIcon />} label='ERP' />;
+      } else {
+        return <Chip variant='outlined' color='success' icon={<ReplyAllIcon />} label='Server' />;
+      }
+    },
   },
   {
     field: 'type',
     headerName: '类型',
     width: 100,
     renderCell: e => {
-      switch (e.row.type) {
+      switch (e.value) {
         case 0:
           return <Chip variant='outlined' color='primary' icon={<DownloadIcon />} label='入库' />;
         case 1:
@@ -31,40 +39,28 @@ const columns = [
     },
   },
   {
-    field: 'location',
-    headerName: '位置',
+    field: 'material',
+    headerName: '物料/仓库',
     width: 150,
   },
   {
-    field: 'priority',
-    headerName: '优先',
+    field: 'task',
+    headerName: '任务',
     width: 100,
-    renderCell: e => {
-      return <Checkbox checked={e.row.priority} />;
-    },
-  },
-  {
-    field: 'executing',
-    headerName: '执行中',
-    width: 100,
-    renderCell: e => {
-      return <Checkbox checked={e.row.executing} />;
-    },
   },
   {
     field: 'time',
     headerName: '时间',
-    width: 300,
+    width: 200,
   },
 ];
 
-function TasksContainer() {
-  const { runningStore } = useStores();
+export default function ErpDataGrid({ data }) {
   return (
-    <Box sx={{ height: '80vh', width: 'auto' }}>
+    <Box sx={{ height: '100%', width: 'auto' }}>
       <DataGrid
         localeText={zhCN.components.MuiDataGrid.defaultProps.localeText}
-        rows={runningStore.taskRaw}
+        rows={data}
         columns={columns}
         slots={{ toolbar: GridToolbar }}
         initialState={{
@@ -72,17 +68,13 @@ function TasksContainer() {
             sortModel: [{ field: 'id', sort: 'desc' }],
           },
         }}
-        slotProps={{
-          toolbar: {
-            showQuickFilter: true,
-            quickFilterProps: { debounceMs: 500 },
-          },
-        }}
+        density='compact'
         autoPageSize
-        checkboxSelection
         disableRowSelectionOnClick
       />
     </Box>
   );
 }
-export default mobxObserver(TasksContainer);
+ErpDataGrid.propTypes = {
+  data: PropTypes.array.isRequired,
+};
