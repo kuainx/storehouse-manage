@@ -83,15 +83,14 @@ def toHex(num, length=2):
 
 def get_task_resolve(str):
     if str[0:2] != '01':
-        return -1
-
+        return '0301'
     stacker = int(str[2:4], base=16)
     positiony = int(str[4:6], base=16)
     positionx = int(str[6:10], base=16)
     if str[10:12] == '01':
         last_task = Task.objects.filter(stacker=stacker).filter(executing=True)
         if last_task.count() == 0:
-            return -2
+            return '0302'
         last_task = last_task.first()
         print(last_task)
         last_task_store = Store.objects.get(
@@ -117,5 +116,9 @@ def get_task_resolve(str):
 
 @api_view(['POST'])
 def task_get(request):
-    msg = get_task_resolve(request.data['msg'])
-    return Response({'msg': msg}, status=status.HTTP_200_OK)
+    try:
+        msg = get_task_resolve(request.data['msg'])
+    except Exception as e:
+        msg = '0303'
+    finally:
+        return Response({'msg': msg}, status=status.HTTP_200_OK)

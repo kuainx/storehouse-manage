@@ -5,8 +5,6 @@ from twisted.internet.protocol import Protocol, Factory
 from twisted.internet import reactor
 from requests import post
 
-from time import ctime
-
 IP_PORT = 7777
 clients = []
 
@@ -34,11 +32,10 @@ class MyServerProtocol(Protocol):
             self.transport.write(send_bytes)
 
 
-# main function
 if __name__ == '__main__':
     print("======twisted server main begin======")
     factory = Factory()
     factory.protocol = MyServerProtocol
-    print("listent...")
+    print("listening...")
     reactor.listenTCP(IP_PORT, factory)
     reactor.run()
