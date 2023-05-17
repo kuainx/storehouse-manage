@@ -17,6 +17,7 @@ export function materialStore() {
           e.total = 0;
           e.location = [];
         });
+        data.sort((a, b) => a.id - b.id);
         runInAction(() => {
           this.localMaterialList = data;
           this.lastFetchMaterial = Date.now();

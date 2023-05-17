@@ -56,7 +56,7 @@ def task_export(request):
     for stacker in task_num:
         useable_store = Store.objects.filter(status=StoreStatus.OCCUPIED).filter(
             Q(storen=stacker[0]*2) | Q(storen=stacker[0]*2+1)).filter(
-            material=request.data['material'])
+            material=request.data['material']['material'])
         if useable_store.count() != 0:
             cas = useable_store.order_by("-storey").first()
             cas.status = StoreStatus.LOCKED

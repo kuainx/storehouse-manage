@@ -98,17 +98,20 @@
 
 
 
-### Task/get
+### Task/export
 
-- 接口描述：获取任务
-- 接口地址：/task/get
+- 接口描述：新增出库任务
+- 接口地址：/task/export
 - 请求方式：POST
 - 返回数据：JSON
 - 请求数据：demo
 ```
 {
-    "material":1,
-    "priority":false
+    "priority":true,
+    "material":{
+        "material":3,
+        "num":1
+    }
 }
 ```
 

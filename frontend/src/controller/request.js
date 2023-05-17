@@ -19,3 +19,21 @@ export async function fetchSettings() {
   const response = await axios.get('management/settings/');
   return response.data;
 }
+
+export async function postTask(data) {
+  const req = {
+    priority: false,
+    material: {
+      material: data.material_id,
+      num: 1,
+    },
+  };
+  let url;
+  if (data.type === 0) {
+    url = 'task/import';
+  } else {
+    url = 'task/export';
+  }
+  const response = await axios.post(url, req);
+  return response.data;
+}
