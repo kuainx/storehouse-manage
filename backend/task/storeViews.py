@@ -8,6 +8,7 @@ from .serializers import TaskSerializer
 from management.models import Setting
 from store.models import Store, StoreStatus
 from store.serializers import StoreSerializer
+from log.views import new_log,LogType
 
 
 def stacker_sort():
@@ -47,6 +48,7 @@ def task_import(request):
     if not serializer.is_valid():
         return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     serializer.save()
+    new_log("入库任务："+empty_store+"；物料："+empty_store.material,"task_import")
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -73,6 +75,7 @@ def task_export(request):
             if not serializer.is_valid():
                 return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             serializer.save()
+            new_log("出库任务："+cas+"；物料："+cas.material,"task_export")
             return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -99,6 +102,7 @@ def get_task_resolve(str):
             last_task_store.status = StoreStatus.OCCUPIED
         if last_task_store.status == StoreStatus.LOCKED:
             last_task_store.status = StoreStatus.EMPTY
+        new_log("任务"+last_task.id+"完成，库位"+last_task_store, "get_task_resolve")
         last_task_store.save()
         last_task.delete()
     task_list = Task.objects.filter(stacker=stacker)
@@ -120,5 +124,7 @@ def task_get(request):
         msg = get_task_resolve(request.data['msg'])
     except Exception as e:
         msg = '0303'
+        new_log(request.data['msg']+" =>Err: "+e,"task_get",LogType.ERROR)
     finally:
+        new_log(request.data['msg']+" => "+msg,"task_get")
         return Response({'msg': msg}, status=status.HTTP_200_OK)
