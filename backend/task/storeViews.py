@@ -48,7 +48,7 @@ def task_import(request):
     if not serializer.is_valid():
         return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     serializer.save()
-    new_log("入库任务："+empty_store+"；物料："+empty_store.material,"task_import")
+    new_log("入库任务："+empty_store.__str__()+"；物料："+str(empty_store.material),"task_import")
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -75,7 +75,7 @@ def task_export(request):
             if not serializer.is_valid():
                 return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             serializer.save()
-            new_log("出库任务："+cas+"；物料："+cas.material,"task_export")
+            new_log("出库任务："+cas.__str__()+"；物料："+str(cas.material),"task_export")
             return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -84,13 +84,13 @@ def toHex(num, length=2):
     return hex(num)[2:].zfill(length)
 
 
-def get_task_resolve(str):
-    if str[0:2] != '01':
+def get_task_resolve(str1):
+    if str1[0:2] != '01':
         return '0301'
-    stacker = int(str[2:4], base=16)
-    positiony = int(str[4:6], base=16)
-    positionx = int(str[6:10], base=16)
-    if str[10:12] == '01':
+    stacker = int(str1[2:4], base=16)
+    positiony = int(str1[4:6], base=16)
+    positionx = int(str1[6:10], base=16)
+    if str1[10:12] == '01':
         last_task = Task.objects.filter(stacker=stacker).filter(executing=True)
         if last_task.count() == 0:
             return '0302'
@@ -102,7 +102,7 @@ def get_task_resolve(str):
             last_task_store.status = StoreStatus.OCCUPIED
         if last_task_store.status == StoreStatus.LOCKED:
             last_task_store.status = StoreStatus.EMPTY
-        new_log("任务"+last_task.id+"完成，库位"+last_task_store, "get_task_resolve")
+        new_log("任务" + str(last_task.id) + "完成，库位" + last_task_store.__str__() , "get_task_resolve")
         last_task_store.save()
         last_task.delete()
     task_list = Task.objects.filter(stacker=stacker)
@@ -124,7 +124,7 @@ def task_get(request):
         msg = get_task_resolve(request.data['msg'])
     except Exception as e:
         msg = '0303'
-        new_log(request.data['msg']+" =>Err: "+e,"task_get",LogType.ERROR)
+        new_log(request.data['msg']+" =>Err: "+str(e),"task_get",LogType.ERROR)
     finally:
         new_log(request.data['msg']+" => "+msg,"task_get")
         return Response({'msg': msg}, status=status.HTTP_200_OK)
