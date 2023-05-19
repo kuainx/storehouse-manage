@@ -11,6 +11,11 @@ import { useState } from 'react';
 import { getTimeText } from '../../controller/utils';
 import { mobxObserver, useStores } from '../../store';
 import { postTask } from '../../controller/request';
+import { useRef } from 'react';
+
+function randInt(min, max) {
+  return min + Math.floor(Math.random() * (max + 1));
+}
 
 function ErpController({ addErpData }) {
   const [type, setType] = useState(0);
@@ -23,12 +28,12 @@ function ErpController({ addErpData }) {
   };
   const { materialStore } = useStores();
   const data = materialStore.materialStore;
-  const sendRequest = async () => {
+  const sendRequest = async (eType = type, eMaterial = material) => {
     const req = {
       send: true,
-      type,
-      material_id: data[material].id,
-      material: data[material].display,
+      type: eType,
+      material_id: data[eMaterial].id,
+      material: data[eMaterial].display,
       task: '',
       time: getTimeText(),
     };
@@ -42,6 +47,26 @@ function ErpController({ addErpData }) {
     };
     addErpData([req, resp]);
   };
+  const [auto, setAuto] = useState(false);
+  const autoRef = useRef(false);
+  const [refresh, setRefresh] = useState(5000);
+  function handleAutoChange() {
+    console.log('handleAutoChange');
+    setAuto(!auto);
+    autoRef.current = !auto;
+    if (!auto) {
+      setTimeout(autoRequest, 100);
+    }
+  }
+  async function autoRequest() {
+    const eType = randInt(0, 1);
+    const eMaterial = randInt(0, data.length - 1);
+    console.log(autoRef.current);
+    if (autoRef.current) {
+      sendRequest(eType, eMaterial);
+      setTimeout(autoRequest, refresh);
+    }
+  }
 
   return (
     <div className='simulatorControlContainer'>
@@ -52,7 +77,7 @@ function ErpController({ addErpData }) {
           <MenuItem value={1}>出库</MenuItem>
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1 }} size='small'>
+      <FormControl sx={{ m: 1, width: '200px' }} size='small'>
         <InputLabel id='erp-material-label'>物料</InputLabel>
         <Select
           labelId='erp-material-label'
@@ -69,15 +94,23 @@ function ErpController({ addErpData }) {
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1 }} size='small'>
-        <Button variant='contained' onClick={sendRequest}>
+        <Button variant='contained' onClick={() => sendRequest()}>
           发送
         </Button>
       </FormControl>
       <FormControl sx={{ m: 1, maxWidth: '120px' }} size='small'>
-        <TextField label='轮询时间(ms)' size='small' variant='outlined' value={5000} />
+        <TextField
+          label='轮询时间(ms)'
+          size='small'
+          variant='outlined'
+          value={refresh}
+          onChange={event => {
+            setRefresh(event.target.value);
+          }}
+        />
       </FormControl>
       <FormControl sx={{ m: 1 }} size='small'>
-        <FormControlLabel control={<Switch />} label='自动' />
+        <FormControlLabel control={<Switch checked={auto} onChange={() => handleAutoChange()} />} label='自动' />
       </FormControl>
     </div>
   );

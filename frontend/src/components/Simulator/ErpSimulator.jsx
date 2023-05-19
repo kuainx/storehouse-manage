@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import { useState, useRef } from 'react';
 import Item from '../Utils/Item';
 import { Button } from '@mui/material';
 import ErpDataGrid from './ErpDataGrid';
@@ -7,10 +6,12 @@ import ErpController from './ErpController';
 
 export default function ErpSimulator() {
   const [erpDataList, setErpDataList] = useState([]);
-  const addErpData = data => {
-    let id = erpDataList.length + 1;
+  const erpDataRef = useRef([]);
+  const addErpData = async data => {
+    let id = erpDataRef.current.length + 1;
     const newData = data.map(e => ({ id: id++, ...e }));
-    setErpDataList([...newData.reverse(), ...erpDataList]);
+    erpDataRef.current = [...newData.reverse(), ...erpDataRef.current];
+    setErpDataList([...erpDataRef.current]);
   };
   return (
     <>

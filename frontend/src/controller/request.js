@@ -37,3 +37,8 @@ export async function postTask(data) {
   const response = await axios.post(url, req);
   return response.data;
 }
+
+export async function postPlc(data) {
+  const response = await axios.post('task/get', { msg: data });
+  return response.data.msg;
+}
