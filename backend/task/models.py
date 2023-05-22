@@ -20,9 +20,6 @@ class Task(models.Model):
     executing = models.BooleanField(verbose_name='executing', default=False)
     time = models.DateTimeField(verbose_name='time', auto_now_add=True)
 
-    # def __str__(self):
-    #     return self.key+':'+self.value
-
     class Meta:
         verbose_name = "Task"
         indexes = [models.Index(fields=["stacker"])]

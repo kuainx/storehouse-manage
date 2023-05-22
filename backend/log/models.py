@@ -17,8 +17,6 @@ class Log(models.Model):
         choices=LogType.choices,
         default=LogType.LOG,
     )
-    # def __str__(self):
-    #     return self.key+':'+self.value
 
     class Meta:
         verbose_name = "Log"

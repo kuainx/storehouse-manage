@@ -28,5 +28,3 @@ def task_remove(request):
     task = Task.objects.get(id=request.data['id'])
     task.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
-
-
