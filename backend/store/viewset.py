@@ -23,5 +23,6 @@ class StoreViewSet(viewsets.ModelViewSet):
     - 请求方式：GET, PUT, PATCH, DELETE
     - 返回数据：JSON
     """
+
     queryset = Store.objects.all()
     serializer_class = StoreSerializer

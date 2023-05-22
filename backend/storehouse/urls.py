@@ -16,15 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from django.conf.urls import include, url
+
 
 urlpatterns = [
-    path(r'api/', include([
-        path('management/', include('management.urls')),
-        path('material/', include('material.urls')),
-        path('store/', include('store.urls')),
-        path('task/', include('task.urls')),
-        path('log/', include('log.urls')),
-        path("admin/", admin.site.urls),
-    ])),
+    path(
+        r"api/",
+        include(
+            [
+                path("management/", include("management.urls")),
+                path("material/", include("material.urls")),
+                path("store/", include("store.urls")),
+                path("task/", include("task.urls")),
+                path("log/", include("log.urls")),
+                path("admin/", admin.site.urls),
+            ]
+        ),
+    ),
 ]

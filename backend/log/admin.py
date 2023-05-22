@@ -4,4 +4,4 @@ from .models import Log
 
 @admin.register(Log)
 class LogAdmin(admin.ModelAdmin):
-    list_display = ('id', 'time', 'msg', 'reporter', 'type')
+    list_display = ("id", "time", "msg", "reporter", "type")

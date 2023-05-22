@@ -4,4 +4,4 @@ from .models import Material
 
 @admin.register(Material)
 class MaterialAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'desc', 'material', 'unit')
+    list_display = ("id", "name", "desc", "material", "unit")

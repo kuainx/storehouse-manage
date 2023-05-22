@@ -6,16 +6,16 @@ from .models import Task
 from .serializers import TaskSerializer
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def task_list(request):
     tasks = Task.objects.all()
     serializer = TaskSerializer(tasks, many=True)
     return Response(serializer.data)
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def task_set(request):
-    task = Task.objects.get(id=request.data['id'])
+    task = Task.objects.get(id=request.data["id"])
     serializer = TaskSerializer(task, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -23,8 +23,8 @@ def task_set(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def task_remove(request):
-    task = Task.objects.get(id=request.data['id'])
+    task = Task.objects.get(id=request.data["id"])
     task.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
