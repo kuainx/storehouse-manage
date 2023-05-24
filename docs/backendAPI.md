@@ -37,10 +37,10 @@
 
 
 
-### Store/<id>
+### Store/:id
 
 - 接口描述：获取/修改/删除指定库位
-- 接口地址：/store/<id>
+- 接口地址：/store/:id
 - 请求方式：GET, PUT, PATCH, DELETE
 - 返回数据：JSON
 
@@ -152,4 +152,3 @@
 - 接口描述：删除任务
 - 接口地址：/task/set
 - 请求方式：POST
-
