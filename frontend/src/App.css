@@ -68,14 +68,10 @@
 .storeShelfContainer {
   display: flex;
   height: 60%;
-  /* width: 100%;
-  overflow: auto; */
 }
 .storeMachineContainer {
   display: flex;
   height: 40%;
-  /* width: 100%;
-  overflow: auto; */
 }
 
 .simulatorControlContainer {

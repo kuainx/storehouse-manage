@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
-import Item from '../Utils/Item';
 import ErpSimulator from './ErpSimulator';
-import PlcSimulator from './PLCSimulator';
+import PlcSimulator from './PlcSimulator';
 
 export default function SimulatorContainer() {
   return (

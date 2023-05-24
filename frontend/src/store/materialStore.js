@@ -25,6 +25,9 @@ export function materialStore() {
       }
       return this.localMaterialList;
     },
+    getMaterialById(id) {
+      return this.materialStore.find(e => e.id === id);
+    },
     localStoreRaw: [],
     lastFetchStoreRaw: 0,
     get storeRaw() {
@@ -54,7 +57,7 @@ export function materialStore() {
       this.storeRaw.forEach(e => {
         ret[e.storen] ??= [];
         ret[e.storen][e.storey] ??= [];
-        ret[e.storen][e.storey][e.storex] = { ...e, materialDisplay: this.materialStore[e.material]?.display };
+        ret[e.storen][e.storey][e.storex] = { ...e, materialDisplay: this.getMaterialById(e.material)?.display };
         shelfData[e.storen] ??= { EMTY: 0, OCUP: 0, RSVD: 0, LOCK: 0 };
         shelfData[e.storen][e.status]++;
         if (e.status === 'OCUP') {
@@ -62,7 +65,7 @@ export function materialStore() {
           if (materialIndex === -1) {
             materialData.push({
               id: e.material,
-              display: this.materialStore[e.material]?.display,
+              display: this.getMaterialById(e.material)?.display,
               total: e.num,
               location: [e],
             });

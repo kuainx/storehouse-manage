@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import PropTypes from 'prop-types';
@@ -43,9 +41,6 @@ function StoreBox({ n, x, y }) {
           {data.materialDisplay} x {data.num}
         </Typography>
       </CardContent>
-      {/* <CardActions>
-        <Button size='small'>移出</Button>
-      </CardActions> */}
     </Card>
   );
 }

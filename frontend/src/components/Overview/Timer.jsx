@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Card from '@mui/material/Card';
+import { useEffect, useRef, useState } from 'react';
 import './Timer.css';
 
 export default function Timer() {
@@ -32,7 +31,6 @@ export default function Timer() {
     const minutes = time.getMinutes();
     const s = time.getSeconds();
     const seconds = s <= 9 ? '0' + s : s;
-    // const t = `${year}年${month}月${day}日 ${hour}:${minutes}:${seconds}`
     setHour(hour);
     setSeconds(seconds);
     if (minutes < 10) {
